@@ -49,7 +49,6 @@ public class DialoguePoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         dialogueMenu.RecieveDialogueBranch(startBranch); // Add start branch here
-        dialogueMenu.RecieveDialogueBranch(); 
         popup.gameObject.SetActive(true);
         popup.text = "Press [E] to " + info;
         inDialogueZone = true;

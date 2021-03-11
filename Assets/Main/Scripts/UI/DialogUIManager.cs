@@ -58,7 +58,7 @@ public class DialogUIManager : MonoBehaviour
     }
 
     
-    public void RecieveDialogueBranch()
+    public void RecieveDialogueBranch(DialogueBranch newBranch)
     {
         // Add branch info here
         this.branch = newBranch;
@@ -74,6 +74,24 @@ public class DialogUIManager : MonoBehaviour
             if(responses == 0){
                 DeactiveDialogue();
             }
+            else{
+                //Responses -> Activate Buttons
+                continueText.SetActive(false);
+                for(int i = 0; i < responses; i++){
+                    if( i >= 3){
+                        break;
+                    }
+
+                    //Active the button and place response text
+                    responsesHolder[i].gameObject.SetActive(true);
+                    responsesHolder[i].GetComponentInChildren<TextMeshProUGUI>().text=branch.ResponseOption[i].text;
+                }
+            }
+        }
+        else{
+            mainText.GetComponent<TextMeshProUGUI>().text = branch.DialogueLines[currentIndex];
+            continueText.SetActive(true);
+            currentIndex++;
         }
         //DeactiveDialogue(); // Remove this and
        // add next Dialogue mechanism here
